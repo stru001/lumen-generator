@@ -12,8 +12,9 @@ class $MODEL_NAME$APIController extends BaseController
     /** @var  $MODEL_NAME$APIService */
     private $$MODEL_NAME_CAMEL$Service;
 
-    public function __construct($MODEL_NAME$APIService $$MODEL_NAME_CAMEL$Service)
+    public function __construct(Request $request, $MODEL_NAME$APIService $$MODEL_NAME_CAMEL$Service)
     {
+        parent::__construct($request);
         $this->$MODEL_NAME_CAMEL$Service = $$MODEL_NAME_CAMEL$Service;
     }
 
