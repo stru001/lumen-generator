@@ -1,0 +1,73 @@
+<?php
+
+namespace $NAMESPACE_ADMIN_SERVICE$;
+
+use $NAMESPACE_MODEL$\$MODEL_NAME$;
+
+use $NAMESPACE_APP$\Services\BaseService;
+
+class $MODEL_NAME$AdminService extends BaseService
+{
+    /** @var  $MODEL_NAME$ */
+    private $$MODEL_NAME_CAMEL$Model;
+
+    public function __construct($MODEL_NAME$ $$MODEL_NAME_CAMEL$)
+    {
+        parent::__construct();
+        $this->$MODEL_NAME_CAMEL$Model = $$MODEL_NAME_CAMEL$;
+    }
+
+    public function pageQuery($params)
+    {
+        $page = $params['page'] ?? 1;
+        $paginate = $params['paginate'] ?? 10;
+        $$MODEL_NAME_PLURAL_CAMEL$ = $this->$MODEL_NAME_CAMEL$Model::pageQuery(
+            [],
+            '*',
+            'id',
+            'desc',
+            $page,
+            $paginate
+        );
+
+        return $$MODEL_NAME_PLURAL_CAMEL$;
+    }
+
+    public function add($params)
+    {
+        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Model::createData($params);
+
+        return $$MODEL_NAME_CAMEL$;
+    }
+
+    public function edit($params)
+    {
+        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Model::saveData($params,['id' => $params['id']]);
+
+        return $$MODEL_NAME_CAMEL$;
+    }
+
+    public function info($id)
+    {
+        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Model::getInfo(['id' => $id]);
+
+        if (empty($$MODEL_NAME_CAMEL$)) {
+            return false;
+        }
+
+        return $$MODEL_NAME_CAMEL$;
+    }
+
+    public function del($id)
+    {
+        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Model::getInfo(['id' => $id]);
+
+        if (empty($$MODEL_NAME_CAMEL$)) {
+            return false;
+        }
+
+        $this->$MODEL_NAME_CAMEL$Model::del(['id' => $id]);
+
+        return $$MODEL_NAME_CAMEL$;
+    }
+}

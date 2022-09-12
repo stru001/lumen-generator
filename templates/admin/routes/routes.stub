@@ -1,0 +1,8 @@
+
+$router->group(['prefix' => '$MODEL_NAME_SNAKE$'], function () use ($router) {
+    $router->get('pageQuery','$PATH_PREFIX$$MODEL_NAME$APIController@pageQuery');
+    $router->get('info','$PATH_PREFIX$$MODEL_NAME$APIController@info');
+    $router->post('add','$PATH_PREFIX$$MODEL_NAME$APIController@add');
+    $router->post('edit','$PATH_PREFIX$$MODEL_NAME$APIController@edit');
+    $router->post('del','$PATH_PREFIX$$MODEL_NAME$APIController@del');
+});

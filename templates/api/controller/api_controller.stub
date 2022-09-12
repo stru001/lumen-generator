@@ -1,0 +1,70 @@
+<?php
+
+namespace $NAMESPACE_API_CONTROLLER$;
+
+use $NAMESPACE_API_SERVICE$\$MODEL_NAME$APIService;
+use Illuminate\Http\Request;
+use $NAMESPACE_APP$\Http\Controllers\BaseController;
+
+
+class $MODEL_NAME$APIController extends BaseController
+{
+    /** @var  $MODEL_NAME$APIService */
+    private $$MODEL_NAME_CAMEL$Service;
+
+    public function __construct($MODEL_NAME$APIService $$MODEL_NAME_CAMEL$Service)
+    {
+        $this->$MODEL_NAME_CAMEL$Service = $$MODEL_NAME_CAMEL$Service;
+    }
+
+    public function pageQuery(Request $request)
+    {
+        $params = $request->all();
+        $$MODEL_NAME_PLURAL_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->pageQuery($params);
+
+        return $this->sucess('success', $$MODEL_NAME_PLURAL_CAMEL$);
+    }
+
+    public function add(Request $request)
+    {
+        $params = $request->all();
+        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->add($params);
+
+        return $this->sucess('add success', $$MODEL_NAME_CAMEL$);
+    }
+
+    public function edit(Request $request)
+    {
+        $params = $request->all();
+
+        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->edit($params);
+
+        return $this->sucess('edit success', $$MODEL_NAME_CAMEL$);
+    }
+
+    public function info(Request $request)
+    {
+        $id = $request->all('id');
+        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->info($id);
+
+        if (empty($$MODEL_NAME_CAMEL$)) {
+            return $this->faild('not found');
+        }
+
+        return $this->sucess('success', $$MODEL_NAME_CAMEL$);
+    }
+
+    public function del(Request $request)
+    {
+        $id = $request->all('id');
+        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->info($id);
+
+        if (empty($$MODEL_NAME_CAMEL$)) {
+            return $this->faild('not found');
+        }
+
+        $this->$MODEL_NAME_CAMEL$Service->del($id);
+
+        return $this->sucess('deleted success');
+    }
+}

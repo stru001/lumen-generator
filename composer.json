@@ -1,0 +1,48 @@
+{
+    "name": "stru/lumen-generator",
+    "description": "This is a library with generator CURD for lumen",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Stru\\LumenGenerator\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "stru001",
+            "email": "struphp@sina.com"
+        }
+    ],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.0-dev"
+        },
+        "lumen": {
+            "providers": [
+                "\\Stru\\Generator\\StruGeneratorServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
+        }
+    },
+    "require": {
+        "php": ">=7.2",
+        "illuminate/support": "^6.0.0",
+        "laracasts/flash": "~3.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    }
+}
