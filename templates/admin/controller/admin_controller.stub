@@ -23,7 +23,7 @@ class $MODEL_NAME$AdminController extends BaseController
         $params = $request->all();
         $$MODEL_NAME_PLURAL_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->pageQuery($params);
 
-        return $this->sucess('success', $$MODEL_NAME_PLURAL_CAMEL$);
+        return $this->rep($$MODEL_NAME_PLURAL_CAMEL$);
     }
 
     public function add(Request $request)
@@ -31,7 +31,7 @@ class $MODEL_NAME$AdminController extends BaseController
         $params = $request->all();
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->add($params);
 
-        return $this->sucess('add success', $$MODEL_NAME_CAMEL$);
+        return $this->rep($$MODEL_NAME_CAMEL$);
     }
 
     public function edit(Request $request)
@@ -40,19 +40,16 @@ class $MODEL_NAME$AdminController extends BaseController
 
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->edit($params);
 
-        return $this->sucess('edit success', $$MODEL_NAME_CAMEL$);
+        return $this->rep($$MODEL_NAME_CAMEL$);
     }
 
     public function info(Request $request)
     {
         $id = $request->all('id');
+
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->info($id);
 
-        if (empty($$MODEL_NAME_CAMEL$)) {
-            return $this->faild('not found');
-        }
-
-        return $this->sucess('success', $$MODEL_NAME_CAMEL$);
+        return $this->rep($$MODEL_NAME_CAMEL$);
     }
 
     public function del(Request $request)
@@ -61,11 +58,11 @@ class $MODEL_NAME$AdminController extends BaseController
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->info($id);
 
         if (empty($$MODEL_NAME_CAMEL$)) {
-            return $this->faild('not found');
+            return $this->failed('not found');
         }
 
         $this->$MODEL_NAME_CAMEL$Service->del($id);
 
-        return $this->sucess('deleted success');
+        return $this->rep();
     }
 }

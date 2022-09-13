@@ -30,21 +30,21 @@ class $MODEL_NAME$APIService extends BaseService
             $paginate
         );
 
-        return $$MODEL_NAME_PLURAL_CAMEL$;
+        return $this->serviceSuccess($$MODEL_NAME_PLURAL_CAMEL$);
     }
 
     public function add($params)
     {
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Model::createData($params);
 
-        return $$MODEL_NAME_CAMEL$;
+        return $this->serviceSuccess($$MODEL_NAME_CAMEL$);
     }
 
     public function edit($params)
     {
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Model::saveData($params,['id' => $params['id']]);
 
-        return $$MODEL_NAME_CAMEL$;
+        return $this->serviceSuccess($$MODEL_NAME_CAMEL$);
     }
 
     public function info($id)
@@ -52,10 +52,10 @@ class $MODEL_NAME$APIService extends BaseService
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Model::getInfo(['id' => $id]);
 
         if (empty($$MODEL_NAME_CAMEL$)) {
-            return false;
+            return $this->serviceFailed('not found');
         }
 
-        return $$MODEL_NAME_CAMEL$;
+        return $this->serviceSuccess($$MODEL_NAME_CAMEL$);
     }
 
     public function del($id)
@@ -63,11 +63,11 @@ class $MODEL_NAME$APIService extends BaseService
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Model::getInfo(['id' => $id]);
 
         if (empty($$MODEL_NAME_CAMEL$)) {
-            return false;
+            return $this->serviceFailed('not found');
         }
 
         $this->$MODEL_NAME_CAMEL$Model::del(['id' => $id]);
 
-        return $$MODEL_NAME_CAMEL$;
+        return $this->serviceSuccess($$MODEL_NAME_CAMEL$);
     }
 }
