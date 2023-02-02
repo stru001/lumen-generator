@@ -23,7 +23,7 @@ class $MODEL_NAME$APIController extends BaseController
         $params = $request->all();
         $$MODEL_NAME_PLURAL_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->pageQuery($params);
 
-        return $this->rep($$MODEL_NAME_PLURAL_CAMEL$);
+        return $this->success($$MODEL_NAME_PLURAL_CAMEL$,"成功");
     }
 
     public function add(Request $request)
@@ -31,7 +31,7 @@ class $MODEL_NAME$APIController extends BaseController
         $params = $request->all();
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->add($params);
 
-        return $this->rep($$MODEL_NAME_CAMEL$);
+        return $this->success($$MODEL_NAME_CAMEL$,"添加成功");
     }
 
     public function edit(Request $request)
@@ -40,7 +40,7 @@ class $MODEL_NAME$APIController extends BaseController
 
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->edit($params);
 
-        return $this->rep($$MODEL_NAME_CAMEL$);
+        return $this->success($$MODEL_NAME_CAMEL$,"修改成功");
     }
 
     public function info(Request $request)
@@ -52,7 +52,7 @@ class $MODEL_NAME$APIController extends BaseController
             return $this->failed('not found');
         }
 
-        return $this->rep($$MODEL_NAME_CAMEL$);
+        return $this->success($$MODEL_NAME_CAMEL$,"成功");
     }
 
     public function del(Request $request)
@@ -64,8 +64,8 @@ class $MODEL_NAME$APIController extends BaseController
             return $this->failed('not found');
         }
 
-        $this->$MODEL_NAME_CAMEL$Service->del($id);
+        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->del($id);
 
-        return $this->rep();
+        return $this->success($$MODEL_NAME_CAMEL$,"删除成功");
     }
 }

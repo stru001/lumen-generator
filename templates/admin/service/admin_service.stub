@@ -30,21 +30,23 @@ class $MODEL_NAME$AdminService extends BaseService
             $paginate
         );
 
-        return $this->serviceSuccess($$MODEL_NAME_PLURAL_CAMEL$);
+        return $$MODEL_NAME_PLURAL_CAMEL$;
     }
 
     public function add($params)
     {
-        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Model::createData($params);
-
-        return $this->serviceSuccess($$MODEL_NAME_CAMEL$);
+        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Model::saveData($params);
+        if(!$$MODEL_NAME_CAMEL$){
+            throw new BusinessException("添加失败");
+        }
+        return $$MODEL_NAME_CAMEL$->toArray();
     }
 
     public function edit($params)
     {
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Model::saveData($params,['id' => $params['id']]);
 
-        return $this->serviceSuccess($$MODEL_NAME_CAMEL$);
+        return [$$MODEL_NAME_CAMEL$];
     }
 
     public function info($id)
@@ -55,7 +57,7 @@ class $MODEL_NAME$AdminService extends BaseService
             return $this->serviceFailed('not found');
         }
 
-        return $this->serviceSuccess($$MODEL_NAME_CAMEL$);
+        return $$MODEL_NAME_CAMEL$;
     }
 
     public function del($id)
@@ -66,8 +68,8 @@ class $MODEL_NAME$AdminService extends BaseService
             return $this->serviceFailed('not found');
         }
 
-        $this->$MODEL_NAME_CAMEL$Model::del(['id' => $id]);
+        $res = $this->$MODEL_NAME_CAMEL$Model::del(['id' => $id]);
 
-        return $this->serviceSuccess($$MODEL_NAME_CAMEL$);
+        return [$res];
     }
 }
