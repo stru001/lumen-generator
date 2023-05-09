@@ -20,7 +20,7 @@ class $MODEL_NAME$AdminController extends BaseController
 
     public function pageQuery(Request $request)
     {
-        $params = $request->all();
+        $params = $this->getParams();
         $$MODEL_NAME_PLURAL_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->pageQuery($params);
 
         return $this->success($$MODEL_NAME_PLURAL_CAMEL$,"成功");
@@ -28,7 +28,7 @@ class $MODEL_NAME$AdminController extends BaseController
 
     public function add(Request $request)
     {
-        $params = $request->all();
+        $params = $this->getParams();
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->add($params);
 
         return $this->success($$MODEL_NAME_CAMEL$,"添加成功");
@@ -36,7 +36,7 @@ class $MODEL_NAME$AdminController extends BaseController
 
     public function edit(Request $request)
     {
-        $params = $request->all();
+        $params = $this->getParams();
 
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->edit($params);
 
@@ -55,11 +55,6 @@ class $MODEL_NAME$AdminController extends BaseController
     public function del(Request $request)
     {
         $id = $request->all('id');
-        $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->info($id);
-
-        if (empty($$MODEL_NAME_CAMEL$)) {
-            return $this->failed('not found');
-        }
 
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->del($id);
 
