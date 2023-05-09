@@ -6,6 +6,9 @@ use $NAMESPACE_MODEL$\$MODEL_NAME$;
 
 use $NAMESPACE_APP$\Services\BaseService;
 
+use App\Constants\ErrorCode;
+use App\Exceptions\BusinessException;
+
 class $MODEL_NAME$APIService extends BaseService
 {
     /** @var  $MODEL_NAME$ */
@@ -54,7 +57,7 @@ class $MODEL_NAME$APIService extends BaseService
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Model::getInfo(['id' => $id]);
 
         if (empty($$MODEL_NAME_CAMEL$)) {
-            return $this->serviceFailed('not found');
+            throw new BusinessException("",ErrorCode::NOT_FOUND);
         }
 
         return $$MODEL_NAME_CAMEL$;
@@ -65,7 +68,7 @@ class $MODEL_NAME$APIService extends BaseService
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Model::getInfo(['id' => $id]);
 
         if (empty($$MODEL_NAME_CAMEL$)) {
-            return $this->serviceFailed('not found');
+            throw new BusinessException("",ErrorCode::NOT_FOUND);
         }
 
         $res = $this->$MODEL_NAME_CAMEL$Model::del(['id' => $id]);
