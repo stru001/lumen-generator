@@ -45,7 +45,7 @@ class $MODEL_NAME$APIController extends BaseController
 
     public function info(Request $request)
     {
-        $id = $request->all('id');
+        $id = $request->get('id');
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->info($id);
 
         if (empty($$MODEL_NAME_CAMEL$)) {
@@ -57,7 +57,7 @@ class $MODEL_NAME$APIController extends BaseController
 
     public function del(Request $request)
     {
-        $id = $request->all('id');
+        $id = $request->post('id');
 
         $$MODEL_NAME_CAMEL$ = $this->$MODEL_NAME_CAMEL$Service->del($id);
 
